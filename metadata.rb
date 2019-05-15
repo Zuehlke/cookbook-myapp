@@ -7,7 +7,7 @@ long_description 'Installs/Configures myapp'
 version '0.1.0'
 chef_version '>= 13.0'
 
-supports "ubuntu"
+supports 'ubuntu'
 
 issues_url 'https://github.com/tknerr/myapp/issues'
 source_url 'https://github.com/tknerr/myapp'
