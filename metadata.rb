@@ -11,3 +11,5 @@ supports 'ubuntu'
 
 issues_url 'https://github.com/tknerr/myapp/issues'
 source_url 'https://github.com/tknerr/myapp'
+
+depends 'apt', '7.1.1'
