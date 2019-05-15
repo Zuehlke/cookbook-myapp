@@ -1,4 +1,6 @@
-# myapp
+# MyApp Cookbook
 
-TODO: Enter the cookbook description here.
+Chef cookbook to install MyApp
+
+
 
