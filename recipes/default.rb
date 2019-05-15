@@ -8,7 +8,7 @@ service 'apache2' do
 end
 
 file '/var/www/html/index.html' do
-  content 'hello world!'
+  content "hello from #{node['myapp']['greeter']}!"
 end
 
 log 'open your browser at http://localhost:8080 to see it running'
