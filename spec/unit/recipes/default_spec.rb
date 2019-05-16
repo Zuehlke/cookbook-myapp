@@ -30,6 +30,12 @@ describe 'myapp::default' do
   context 'on Ubuntu' do
     platform 'ubuntu'
     it { is_expected.to install_package('apache2') }
+    it { is_expected.to render_file('/var/www/html/index.html').with_content "Hello from john doe!" }
+
+    context 'with custom greeter configured' do
+      default_attributes['myapp']['greeter'] = 'peter parker'
+      it { is_expected.to render_file('/var/www/html/index.html').with_content "Hello from peter parker" }
+    end
 
     context 'on 18.04' do
       platform 'ubuntu', '18.04'
