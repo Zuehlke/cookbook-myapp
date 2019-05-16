@@ -33,12 +33,7 @@ describe 'myapp::default' do
       runner.converge(described_recipe)
     end
 
-    it 'would install apache2 package' do
-      expect(chef_run).to install_package('apache2')
-    end
-
-    it 'renders the correct platform version in index.html' do
-      expect(chef_run).to render_file('/var/www/html/index.html').with_content "ubuntu 18.04"
-    end
+    it { is_expected.to install_package('apache2') }
+    it { is_expected.to render_file('/var/www/html/index.html').with_content "ubuntu 18.04" }
   end
 end
