@@ -28,10 +28,7 @@ require 'spec_helper'
 
 describe 'myapp::default' do
   context 'When all attributes are default, on Ubuntu 18.04' do
-    let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '18.04')
-      runner.converge(described_recipe)
-    end
+    platform 'ubuntu', '18.04'
 
     it { is_expected.to install_package('apache2') }
     it { is_expected.to render_file('/var/www/html/index.html').with_content "ubuntu 18.04" }
