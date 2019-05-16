@@ -27,10 +27,18 @@
 require 'spec_helper'
 
 describe 'myapp::default' do
-  context 'When all attributes are default, on Ubuntu 18.04' do
-    platform 'ubuntu', '18.04'
-
+  context 'on Ubuntu' do
+    platform 'ubuntu'
     it { is_expected.to install_package('apache2') }
-    it { is_expected.to render_file('/var/www/html/index.html').with_content "ubuntu 18.04" }
+
+    context 'on 18.04' do
+      platform 'ubuntu', '18.04'
+      it { is_expected.to render_file('/var/www/html/index.html').with_content "ubuntu 18.04" }
+    end
+
+    context 'on 16.04' do
+      platform 'ubuntu', '16.04'
+      it { is_expected.to render_file('/var/www/html/index.html').with_content "ubuntu 16.04" }
+    end
   end
 end
