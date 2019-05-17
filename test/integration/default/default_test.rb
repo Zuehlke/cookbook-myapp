@@ -14,6 +14,9 @@ end
 
 describe port(80) do
   it { should be_listening }
+  its('processes') { should include 'apache2' }
+  its('protocols') { should include 'tcp' }
+  its('addresses') { should include '0.0.0.0' }
 end
 
 describe file('/var/www/html/index.html') do

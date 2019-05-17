@@ -17,6 +17,7 @@ platforms:
       box: tknerr/baseimage-ubuntu-18.04
     lifecycle:
       pre_converge:
+        - remote: sudo apt-get install net-tools -y
         - remote: sudo wget -O /bin/systemctl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py
 
 suites:
