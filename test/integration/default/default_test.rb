@@ -18,5 +18,5 @@ end
 
 describe file('/var/www/html/index.html') do
   it { should be_file }
-  it { should contain 'Hello from john doe!' }
+  its('content') { should include 'Hello from john doe!' }
 end
