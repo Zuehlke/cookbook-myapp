@@ -1,6 +1,7 @@
 ---
 driver:
   name: vagrant
+  provider: docker
 
 provisioner:
   name: chef_zero
@@ -11,10 +12,18 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-18.04
+  - name: ubuntu-18.04-dockerized
     driver:
-      provider: docker
       box: tknerr/baseimage-ubuntu-18.04
+    lifecycle:
+      pre_converge:
+        - remote: sudo apt-get install net-tools -y
+  - name: ubuntu-16.04-dockerized
+    driver:
+      box: tknerr/baseimage-ubuntu-16.04
+    lifecycle:
+      pre_converge:
+        - remote: sudo apt-get install net-tools -y
 
 suites:
   - name: default
@@ -24,3 +33,5 @@ suites:
       inspec_tests:
         - test/integration/default
     attributes:
+      myapp:
+        greeter: el cheffe
