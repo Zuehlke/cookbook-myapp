@@ -1,6 +1,12 @@
 ---
 driver:
   name: vagrant
+  provider: docker
+
+lifecycle:
+  pre_converge:
+    # install net-tools which are required (but missing in the docker baseimage) for testing listen ports etc
+    - remote: sudo apt-get install net-tools -y
 
 provisioner:
   name: chef_zero
@@ -13,12 +19,10 @@ verifier:
 platforms:
   - name: ubuntu-18.04-dockerized
     driver:
-      provider: docker
       box: tknerr/baseimage-ubuntu-18.04
-    lifecycle:
-      pre_converge:
-        # install net-tools which are required (but missing in the docker baseimage) for testing listen ports etc
-        - remote: sudo apt-get install net-tools -y
+  - name: ubuntu-16.04-dockerized
+    driver:
+      box: tknerr/baseimage-ubuntu-16.04
 
 suites:
   - name: default
