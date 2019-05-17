@@ -27,5 +27,5 @@ jobs:
           command: rspec
       - run:
           name: Run KitchenCI Integration Tests
-          command: kitchen test
+          command: kitchen test --concurrency=4
 
