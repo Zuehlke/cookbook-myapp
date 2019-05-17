@@ -8,8 +8,8 @@ describe package('apache2') do
 end
 
 describe service('apache2') do
-  it { should be_enabled   }
-  it { should be_running   }
+  it { should be_enabled }
+  it { should be_running }
 end
 
 describe port(80) do
@@ -19,4 +19,9 @@ end
 describe file('/var/www/html/index.html') do
   it { should be_file }
   its('content') { should include 'Hello from john doe!' }
+end
+
+describe command('wget -qO- http://localhost:80') do
+  its('exit_status') { should eq 0 }
+  its('stdout') { should include 'Hello from john doe!' }
 end
