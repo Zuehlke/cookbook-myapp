@@ -33,3 +33,5 @@ suites:
       inspec_tests:
         - test/integration/default
     attributes:
+      myapp:
+        greeter: el cheffe
