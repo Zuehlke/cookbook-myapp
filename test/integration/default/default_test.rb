@@ -7,7 +7,7 @@ describe package('apache2') do
   it { should be_installed }
 end
 
-describe service('apache2') do
+describe upstart_service('apache2') do
   it { should be_enabled }
   it { should be_running }
 end
