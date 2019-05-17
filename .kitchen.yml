@@ -15,6 +15,9 @@ platforms:
     driver:
       provider: docker
       box: tknerr/baseimage-ubuntu-18.04
+    lifecycle:
+      pre_converge:
+        - remote: sudo wget -O /bin/systemctl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py
 
 suites:
   - name: default
