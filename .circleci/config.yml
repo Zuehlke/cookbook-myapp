@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
+    environment:
+      BASH_ENV: .circleci/chefdk-init.sh
+    steps:
+      - checkout
+      - run:
+          name: Install Vagrant
+          command: |
+            wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
+            sudo dpkg -i vagrant_2.2.4_x86_64.deb
+      - run:
+          name: Install ChefDK
+          command: |
+            wget -qO- https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable -v 3.9.0
+      - run:
+          name: Run Cookstyle Style Checker
+          command: cookstyle
+      - run:
+          name: Run Foodcritic Linting
+          command: foodcritic .
+      - run:
+          name: Run ChefSpec Unit Tests
+          command: rspec
+      - run:
+          name: Run KitchenCI Integration Tests
+          command: kitchen test
+
